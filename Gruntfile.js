@@ -52,7 +52,7 @@ module.exports = function(grunt) {
         cssmin: {
             dist: {
                 files: {
-                    'dist/css/index.css': ['build/css/*.css']
+                    'dist/css/main.css': ['build/css/libs/*.css', 'build/css/*.css']
                 }
             }
         },
@@ -60,9 +60,16 @@ module.exports = function(grunt) {
             autoprefix: {
                 expand: true,
                 flatten: true,
-                src: 'dist/css/index.css',
+                src: 'dist/css/main.css',
                 dest: 'dist/css/',
             },
+        },
+        uncss: {
+            dist: {
+                files: {
+                    'dist/css/main.css': ['build/*.html']
+                }
+            }
         },
 
         // Images //
@@ -104,10 +111,14 @@ module.exports = function(grunt) {
                     minifyJS: true,
                     minifyCSS: true
                 },
-                files: { // Dictionary of files
-                    'dist/index.html': 'build/index.html' // 'destination': 'source'
-                        // 'dist/contact.html': 'src/contact.html'
-                }
+                files: [{
+                    expand: true, // Enable dynamic expansion.
+                    cwd: 'build/', // Src matches are relative to this path.
+                    src: ['*.html'], // Actual pattern(s) to match.
+                    dest: 'dist/', // Destination path prefix.
+                    ext: '.html', // Dest filepaths will have this extension.
+                    extDot: 'first' // Extensions in filenames begin after the first dot
+                }]
             }
         },
 
@@ -143,6 +154,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-autoprefixer');
+    grunt.loadNpmTasks('grunt-uncss');
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-imageoptim');
@@ -154,7 +166,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['js', 'styles', 'images', 'html']);
 
     grunt.registerTask('js', ['uglify']);
-    grunt.registerTask('styles', ['cssmin', 'autoprefixer']);
+    grunt.registerTask('styles', ['cssmin', 'newer:uncss:dist', 'autoprefixer']);
     grunt.registerTask('images', ['newer:copy:main', 'newer:imageoptim:myTask']);
     grunt.registerTask('html', ['htmlmin']);
 
