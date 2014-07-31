@@ -76,12 +76,16 @@ nav {
     background-color: #fe0;
     z-index: 10;
     /*opacity: 0;*/
-    border-right: 1em solid #fff;
-    border-top: 1em solid #fff;
+    /*border-right: 2em solid rgba(255,255,255,1);*/
+    margin: 2em;
+    box-shadow: 0 0 0 2em transparent;
+    /*border-top: 2em solid rgba(255,255,255,1);*/
     box-sizing: border-box;
+    background-clip: padding-box;
 }
 nav.shown {
     transform: translate(100%, -100%);
+    box-shadow: 0 0 0 2.1em #fff;
 }
 nav li {
     list-style: none;
@@ -111,7 +115,7 @@ nav li a::after {
     z-index: 999;
     box-sizing: border-box;
 }
-nav li a:hover::after, nav li a:focus::after {
+nav li a:hover::after, nav li a:focus::after, nav li a:active::after {
     opacity: 1;
     transform: translateX(0px);
 }
@@ -146,4 +150,59 @@ main {
     max-width: 40em;
     margin: 1em auto;
     padding: 1em;
+}
+/* Media queries */
+
+@media (max-width: 40em), (max-height: 40em) {
+    #silence-title h1 {
+        font-size: 8em;
+    }
+    #silence-title h3 {
+        font-size: 1.3em;
+        padding: 1em;
+    }
+    #menu-button, #menu-button::before, #menu-button::after {
+        width: 2.5em;
+        height: 0.45em;
+        right: 0.5em;
+        border: 0.5em solid #fe0;
+    }
+    #menu-button {
+        top: 1.5em;
+    }
+    #menu-button::before {
+        top: 0.5em;
+    }
+    #menu-button::after {
+        top: 2.5em;
+    }
+    nav {
+    	/*border-width: 1em;*/
+    	margin: 1em;
+    }
+    nav ul {
+    	padding-left: 1em;
+    }
+    nav li {
+    	margin: 0.5em;
+    	padding: 0.2em;
+    }
+    nav li a[href] {
+    	font-size: 1.4em;
+    	padding: 0em;
+    }
+    nav li a::after {
+    	width: 1em;
+    	transform: translateX(-2em);
+    }
+}
+@media (max-width: 30em), (max-height: 30em) {
+    #silence-title h1 {
+        font-size: 5em;
+    }
+}
+@media (max-width: 50em), (max-height: 50em) {
+    html, body {
+        font-size: 16px;
+    }
 }
