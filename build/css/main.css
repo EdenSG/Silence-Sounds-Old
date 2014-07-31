@@ -1,5 +1,34 @@
 html, body {
     font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 18px;
+    font-size: 2vmin;
+}
+@media all and (max-width: 50em) {
+    html, body {
+        font-size: 15px;
+    }
+}
+.center {
+    text-align: center;
+    margin: 0 auto;
+}
+big {
+    font-weight: bold;
+    display: block;
+}
+a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.2s, box-shadow .2s ease;
+    box-shadow: 0 0.15em 0 #333;
+}
+a:hover, a:focus {
+    color: #000;
+    box-shadow: 0 0.15em 0 #fe0;
+}
+a:active {
+    background: #fe0;
+    box-shadow: 0 0.15em 0 #000;
 }
 /**/
 
@@ -14,6 +43,15 @@ header {
     font-weight: 900;
     font-size: 12em;
     margin: 0;
+}
+@media (max-width: 40em) {
+    #silence-title h1 {
+        font-size: 8em;
+    }
+    #silence-title h3 {
+        font-size: 1em;
+        padding: 0;
+    }
 }
 #silence-title h3 {
     padding: 3em;
@@ -34,7 +72,7 @@ nav {
     right: 100%;
     width: 100%;
     height: 100%;
-    transition: all 0.5s ease;
+    transition: transform 0.5s ease;
     background-color: #fe0;
     z-index: 10;
     /*opacity: 0;*/
@@ -44,7 +82,38 @@ nav {
 }
 nav.shown {
     transform: translate(100%, -100%);
+}
+nav li {
+    list-style: none;
+    margin: 1em;
+    padding: 0.5em;
+}
+nav li a[href] {
+    color: #000;
+    font-weight: 900;
+    font-size: 2em;
+    text-decoration: none;
+    padding: 0.5em;
+    box-sizing: border-box;
+    box-shadow: none;
+}
+nav li a::after {
+    position: absolute;
+    left: 0;
+    width: 2em;
+    height: 0.8em;
+    margin-top: 0.2em;
+    background: rgba(0, 0, 0, 1);
+    content: '';
     opacity: 1;
+    transition: opacity 0.3s, transform 0.3s;
+    transform: translateX(-4em);
+    z-index: 999;
+    box-sizing: border-box;
+}
+nav li a:hover::after, nav li a:focus::after {
+    opacity: 1;
+    transform: translateX(0px);
 }
 #menu-button, #menu-button::before, #menu-button::after {
     position: fixed;
@@ -54,7 +123,7 @@ nav.shown {
     background-color: #000;
     content: '';
     border: .45em #fe0 solid;
-    transition: all 0.5s ease;
+    transition: background-color 0.5s ease;
     transform-origin: left center;
 }
 #menu-button {
@@ -70,4 +139,11 @@ nav.shown {
 }
 #menu-button.shown::before, #menu-button.shown::after {
     background-color: #fe0;
+}
+/**/
+
+main {
+    max-width: 50em;
+    margin: 1em auto;
+    padding: 1em;
 }
