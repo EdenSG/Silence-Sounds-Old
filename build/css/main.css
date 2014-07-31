@@ -143,7 +143,7 @@ nav li a:hover::after, nav li a:focus::after {
 /**/
 
 main {
-    max-width: 50em;
+    max-width: 40em;
     margin: 1em auto;
     padding: 1em;
 }
