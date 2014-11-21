@@ -4,3 +4,5 @@ Silence Sounds
 
 
 Silence Sounds website (WIP)
+
+# Superseded by [EdenSG/Silence-Sounds](https://github.com/EdenSG/Silence-Sounds)
